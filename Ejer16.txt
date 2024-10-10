@@ -1,0 +1,247 @@
+# 1 Contar Ocurrencias de Elementos
+
+def contar_ocurrencias(palabras):
+    conteo_palabras = {}
+    
+    for palabra in palabras:
+       
+        conteo_palabras[palabra] = conteo_palabras.get(palabra, 0) + 1
+    
+    return conteo_palabras
+
+
+
+
+lista_palabras = ["python", "java", "python", "c++"]
+resultado = contar_ocurrencias(lista_palabras)
+
+print("ocurrencias de palabras:")
+for palabra, cantidad in resultado.items():
+    print(f"'{palabra}': {cantidad} veces que se repite")
+print("\n")
+
+
+
+#2 Combinar Diccionarios
+
+diccionario1 = {'a': 1, 'b': 2, 'c': 3}
+diccionario2 = {'b': 4, 'c': 5, 'd': 6}
+
+def diccionarios(diccionario1, diccionario2):
+   
+    resultado = diccionario1.copy()  
+    for clave, valor in diccionario2.items():
+        if clave in resultado:
+            resultado[clave] += valor  
+        else:
+            resultado[clave] = valor  
+    return resultado
+
+resultado = diccionarios(diccionario1, diccionario2)
+print(resultado)  
+print("\n")
+ 
+ #3 freecuencias
+
+
+ 
+numeros = [1, 1, 2, 3, 3, 3]
+def frecuencia_num(numeros):
+    frecuencia = {}  
+    for numero in numeros:
+        frecuencia[numero] = frecuencia.get(numero, 0) + 1
+    return frecuencia
+print(f"frecuencia: {frecuencia_num(numeros)}")
+print("\n")
+
+
+
+#4 filtrar palabras
+def filtrar_palabras(lista_palabras, longitud):
+  
+    return [palabra for palabra in lista_palabras if len(palabra) > longitud]
+
+palabras = ["hola", "mundo", "python programación"]
+longitud = 5
+resultado = filtrar_palabras(palabras, longitud)
+
+print(f"palabras con mas de {longitud} caracteres: {resultado}")
+print("\n")
+
+
+
+#5 tuplas
+tuplas = [(1, 2), (3, 4), (5, 6)]
+def invertir_tuplas(lista_tuplas):
+    return [tupla[::-1] for tupla in lista_tuplas]
+
+resultado = invertir_tuplas(tuplas)
+
+print(f"tuplas invertidas: {resultado}")
+print("\n")
+
+
+
+#6 valor mas frecuencia
+numeros = [1, 2, 2, 3, 3, 3, 4]
+
+def valor_frecuente(numeros):
+    return max(set(numeros), key=numeros.count)
+
+resultado = valor_frecuente(numeros)
+
+print(f"el numero mas frecuente es: {resultado}")
+print("\n")
+
+
+
+#7 Comprobar Subconjunto
+def es_subconjunto(conjunto_a, conjunto_b):
+    return conjunto_a.issubset(conjunto_b)
+
+a = {1, 2}
+b = {1, 2, 3, 4}
+resultado = es_subconjunto(a, b)
+
+print(f"es a un subconjunto de b? {resultado}")
+print("\n")
+
+
+
+#8 Agrupación por Clave
+def agrupar_por_edad(personas):
+    agrupadas = {}
+    for p in personas:
+        agrupadas.setdefault(p['edad'], []).append(p['nombre'])
+    return agrupadas
+
+personas = [
+    {"nombre": "Ana", "edad": 25},
+    {"nombre": "Luis", "edad": 30},
+    {"nombre": "Pedro", "edad": 25},
+    {"nombre": "María", "edad": 30}
+]
+
+resultado = agrupar_por_edad(personas)
+print(f"personas por edad: {resultado}")
+print("\n")
+
+
+
+#9 Merge Sort utilizando Listas
+def merge_sort(lista):
+    if len(lista) <= 1:
+        return lista
+    medio = len(lista) // 2
+    return mezclar(merge_sort(lista[:medio]), merge_sort(lista[medio:]))
+
+def mezclar(izquierda, derecha):
+    resultado = []
+    while izquierda and derecha:
+        resultado.append(izquierda.pop(0) if izquierda[0] < derecha[0] else derecha.pop(0))
+    return resultado + izquierda + derecha
+
+numeros = [38, 27, 43, 3, 9, 82, 10]
+resultado = merge_sort(numeros)
+
+print(f"numeros ordenados: {resultado}")
+print("\n")
+
+
+
+#10 Eliminar Elementos por Condición
+def eliminar(lista, umbral):
+    return [x for x in lista if x >= umbral]
+
+numeros = [5, 12, 3, 8, 1, 20]
+umbral = 5
+resultado = eliminar(numeros, umbral)
+
+print(f"lista sin elementos menores {umbral}: {resultado}")
+print("\n")
+
+
+
+#11  Flatten List of Lists
+def aplanar_lista(lista):
+    return [elemento for sublista in lista for elemento in sublista]
+
+listas = [[1, 2, 3], [4, 5], [6, 7, 8]]
+resultado = aplanar_lista(listas)
+
+print(f"lists aplanada: {resultado}")
+print("\n")
+
+
+
+#12 media
+def calcular_mediana(lista):
+    lista.sort()
+    n = len(lista)
+    if n % 2:
+        return lista[n // 2]
+    return (lista[n // 2 - 1] + lista[n // 2]) / 2
+
+numeros = [7, 3, 5, 1, 9]
+resultado = calcular_mediana(numeros)
+
+print(f"la mediana es: {resultado}")
+print("\n")
+
+
+
+# 13 duplicar elementos
+def duplicar(lista):
+    return [x * 2 for x in lista]
+
+numeros = [1, 2, 3, 4, 5]
+resultado = duplicar(numeros)
+
+print(f"nueva lista: {resultado}")
+print("\n")
+
+
+
+#14 contar palabras
+def contar_palabras(frases):
+    return {frase: len(frase.split()) for frase in frases}
+
+frases = ["holap mundo", "python es genial y dificil :( , programo xd"]
+resultado = contar_palabras(frases)
+
+print(f"Cantidad de palabras: {resultado}")
+print("\n")
+
+
+
+#15
+def encontrar_clave_maxima(datos):
+    clave_max = None
+    valor_max = float('-inf')
+    
+    for clave, valor in datos.items():
+        if valor > valor_max:
+            valor_max = valor
+            clave_max = clave
+            
+    return clave_max
+
+datos = {'a': 10, 'b': 25, 'c': 15}
+resultado = encontrar_clave_maxima(datos)
+
+print(f"la clave con el valor máximo es: {resultado}")
+print("\n")
+
+
+#16
+def palindromos(palabras):
+    return [palabra for palabra in palabras if palabra == palabra[::-1]]
+
+palabras = ["Mau:(", "Angel", "Fer yooo", "Diego", "Perla:"]
+resultado = palindromos(palabras)
+
+print(f"Palabras que son palíndromos: {resultado}")
+
+
+
+
